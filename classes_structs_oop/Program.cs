@@ -17,7 +17,7 @@
         }
 
         //tell the hero's stats
-        public void PrintStatsInfo()
+        public virtual void PrintStatsInfo()
         {
             Console.WriteLine($"Hero {this.name} - {this.exp} EXP");
         }
@@ -31,8 +31,16 @@
 
     //creating a paladin
     public class Paladin : Character {
-        public Paladin(string name) : base(name) { 
-        
+
+        public Weapon weapon;
+
+        public Paladin(string name, Weapon weapon) : base(name) {
+            this.weapon = weapon;
+        }
+
+        public override void PrintStatsInfo()
+        {
+            Console.WriteLine("Hail "+this.name+" - take up your "+this.weapon.name+"!");
         }
     }
 
@@ -102,11 +110,18 @@
             warBow.PrintWeaponStats();
 
             //working with encapsulation
-            hero.Reset();
+            //hero.Reset();
 
             //Experimenting with Inheritance
-            Paladin knight = new Paladin("Sir Arthur");
+            Paladin knight = new Paladin("Sir Arthur", huntingbow);
             knight.PrintStatsInfo();
+
+            //testing external files
+            Adventurer mike = new Adventurer("Mike");
+            mike.PrintStatsInfo();
+
+            Dude dave = new Dude("Dave");
+            dave.PrintStatsInfo();
         }
     }
 }
